@@ -1,49 +1,53 @@
+# app/main.py
 from app.clients import add_client, list_clients
 from app.services import add_service, list_services
 
+
 def show_menu():
-    print("\n>>>Smart Appointment Manager<<<")
-    print("1. Add Client")
-    print("2. List Clients")   
-    print("3. Add Service")
-    print("4. List Services")
-    print("5. Exit")
+    print("\n=== Smart Appointment Manager ===")
+    print("1 - Add client")
+    print("2 - List clients")
+    print("3 - Add service")
+    print("4 - List services")
+    print("0 - Exit")
+
 
 def main():
     while True:
         show_menu()
         option = input("Choose an option: ")
 
-        if option == '1':
-            name = input("Enter client name: ")
-            phone = input("Enter client phone: ")
+        if option == "1":
+            name = input("Client name: ")
+            phone = input("Client phone: ")
             add_client(name, phone)
             print("Client added successfully.")
 
-        elif option == '2':
+        elif option == "2":
             clients = list_clients()
-            print("\n--- Clients ---")
+            print("\nClients:")
             for client in clients:
-                print(f"Name: {client['name']}, Phone: {client['phone']}")
-        
-        elif option == '3':
-            name = input("Enter service name: ")
-            price = input("Enter service price: ")
+                print(f"- {client['name']} ({client['phone']})")
+
+        elif option == "3":
+            name = input("Service name: ")
+            price = float(input("Service price: "))
             add_service(name, price)
             print("Service added successfully.")
 
-        elif option == '4':
+        elif option == "4":
             services = list_services()
-            print("\nServices")
+            print("\nServices:")
             for service in services:
                 print(f"- {service['name']} | ${service['price']}")
 
-        elif option == '0':
-            print("Goddbye!")
+        elif option == "0":
+            print("Goodbye!")
             break
 
         else:
-            print("Invalid option. Please try again.")
+            print("Invalid option. Try again.")
+
 
 if __name__ == "__main__":
     main()
